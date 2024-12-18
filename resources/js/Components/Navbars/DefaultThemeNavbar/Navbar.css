@@ -1,0 +1,74 @@
+/* Menu bar active animation */
+.border-animation::before {
+    cursor: pointer;
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: -2px;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: 2px solid transparent;
+}
+
+.border-animation:hover::before {
+    animation: animate .6s linear forwards;
+}
+
+@keyframes animate {
+    0% {
+        width: 0;
+        height: 0;
+        border-bottom-color: transparent;
+
+    }
+
+    50% {
+        width: 100%;
+        height: 0;
+        border-bottom-color: transparent;
+    }
+
+    100% {
+        width: 100%;
+        height: 100%;
+        border-bottom-color: transparent;
+    }
+}
+
+.border-animation::after {
+    cursor: pointer;
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: -2px;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: 2px solid transparent;
+}
+
+.border-animation:hover::after {
+    animation: animates .6s linear forwards;
+}
+
+@keyframes animates {
+    0% {
+        width: 0;
+        height: 0;
+        border-bottom-color: transparent;
+    }
+
+    50% {
+        width: 0;
+        height: 100%;
+        border-bottom-color: #FFFFFF;
+    }
+
+    100% {
+        width: 100%;
+        height: 100%;
+        border-bottom-color: #FFFFFF;
+
+    }
+}

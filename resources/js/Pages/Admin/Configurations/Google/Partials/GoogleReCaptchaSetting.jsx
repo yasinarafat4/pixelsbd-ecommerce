@@ -1,0 +1,83 @@
+import { useForm } from "@inertiajs/react";
+import { useLaravelReactI18n } from "laravel-react-i18n";
+
+
+export default function GoogleReCaptchaSetting() {
+    const { t } = useLaravelReactI18n();
+
+    // Chat settings form
+    const { data, setData, post, processing, errors, reset } = useForm({
+        google_recaptcha: "",
+        CAPTCHA_KEY: import.meta.env.VITE_CAPTCHA_KEY,
+        RECAPTCHA_SECRET_KEY: import.meta.env.VITE_RECAPTCHA_SECRET_KEY,
+    })
+
+
+
+    // Chat submit handler
+    function handleGoogleReCaptchaSettingSubmit(e) {
+        e.preventDefault()
+    }
+
+    return (
+        <div  className="shadow-lg p-6 grid grid-cols-2 gap-5 rounded-lg">
+            {/* Left side */}
+            <div  className='card rounded-lg shadow-none bg-white border-[1px] border-slate-200 py-5'>
+                <div  className="border-b pb-4 px-6">
+                    <h2  className="text-[16px] font-medium">{t('Google reCAPTCHA Setting')}</h2>
+                </div>
+                <form onSubmit={handleGoogleReCaptchaSettingSubmit}>
+                    <div  className='grid grid-cols-1 items-center gap-4 px-5 py-3'>
+                        {/* Google reCAPTCHA */}
+                        <div  className="grid grid-cols-12">
+                            <label  className='col-span-3 label-text text-[13px] text-start text-slate-600' htmlFor="google_recaptcha">{t('Google reCAPTCHA')}</label>
+                            <div  className="col-span-9 ">
+                                <input type="checkbox"  className="toggle toggle-sm toggle-success" />
+                            </div>
+                        </div>
+                        {/* Captcha Key */}
+                        <div  className="flex justify-between">
+                            <label  className='label-text text-[12px] text-start text-slate-600' htmlFor="CAPTCHA_KEY">{t('Captcha Key')}</label>
+                            <input onChange={e => setData('CAPTCHA_KEY', e.target.value)} value={data.CAPTCHA_KEY} name='CAPTCHA_KEY' id='CAPTCHA_KEY' type="text" placeholder={t('Captcha Key')}  className="p-[13px] focus:outline-none border-[1px] border-slate-200 block text-slate-600 bg-white w-9/12 rounded-lg text-sm" />
+                            {errors.CAPTCHA_KEY && <div  className="text-red-500 text-sm mt-1">{errors.CAPTCHA_KEY}</div>}
+                        </div>
+                        {/* Secret Key */}
+                        <div  className="flex justify-between">
+                            <label  className='label-text text-[12px] text-start text-slate-600' htmlFor="RECAPTCHA_SECRET_KEY">{t('Secret Key')}</label>
+                            <input onChange={e => setData('RECAPTCHA_SECRET_KEY', e.target.value)} value={data.RECAPTCHA_SECRET_KEY} name='RECAPTCHA_SECRET_KEY' id='RECAPTCHA_SECRET_KEY' type="text" placeholder={t('Secret Key')}  className="p-[13px] focus:outline-none border-[1px] border-slate-200 block text-slate-600 bg-white w-9/12 rounded-lg text-sm" />
+                            {errors.RECAPTCHA_SECRET_KEY && <div  className="text-red-500 text-sm mt-1">{errors.RECAPTCHA_SECRET_KEY}</div>}
+                        </div>
+
+
+                    </div>
+                    <div  className="flex justify-end mx-5">
+                        <button type="submit"  className="bg-[#008FE1] duration-300 py-2 px-4 rounded-md text-white text-md">{t('Save')}</button>
+                    </div>
+                </form>
+            </div>
+            {/* Right side */}
+            <div  className='card rounded-lg shadow bg-white border-[1px] border-slate-200 py-3'>
+                <div  className="border-b pb-4 px-5">
+                    <h2  className="text-[16px] font-medium">{t('Google reCAPTCHA Configuration Notes')}</h2>
+                </div>
+                <div  className='grid grid-cols-1 items-center gap-4 px-5 py-3'>
+                    <div>
+                        <ul  className="border-t-[1px] border-l-[1px] border-slate-200 rounded">
+                            <li  className="text-[13px] px-4 py-2 border-b-[1px] border-r-[1px] border-slate-200 rounded-t">
+                                1. To enable captcha, you need to provide the Captcha Key and Captcha Secret.
+                            </li>
+                            <li  className="text-[13px] px-4 py-2 border-b-[1px] border-r-[1px] border-slate-200">
+                                2. Obtain the Captcha Secret Key and Captcha Key from Google reCaptcha.
+                            </li>
+                            <li  className="text-[13px] px-4 py-2 border-b-[1px] border-r-[1px] border-slate-200 rounded-b">
+                                3. For more details, follow the Google reCaptcha Documentation.
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    )
+
+}

@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Http\Request;
+use Inertia\Inertia;
+use App\Models\Tax;
+
+class TaxController extends Controller
+{
+    public function index(Request $request)
+    {
+        return Inertia::render('Admin/Configurations/Tax/Index');
+    }
+    public function create()
+    {
+        return Inertia::render('Admin/Configurations/Tax/Create');
+    }
+
+    public function store(Request $request) {}
+
+    public function show($id)
+    {
+        return Inertia::render('Admin/Configurations/Tax/Show');
+    }
+
+    public function edit($id)
+    {
+        return Inertia::render('Admin/Configurations/Tax/Edit');
+    }
+
+    public function update(Request $request, $id) {}
+
+    public function destroy($id) {}
+}
